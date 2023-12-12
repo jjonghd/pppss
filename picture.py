@@ -18,12 +18,16 @@ def take_picture():
 
     capNum = int (0)  
     while True:  
-        ret, frame = picture.read()  
+        ret, frame = picture.read() 
+        
+        if os.path.exists('picture000.png') and os.path.isfile('picture000.png'):
+            os.remove('picture000.png') 
 
         cv2.imshow("camera", frame)
         
         if cv2.waitKey(1) & 0xFF == ord('p'):
-
+            
+            
             cv2.imwrite('picture%03d.png' % capNum,frame) 
             capNum += 1   
 
@@ -53,6 +57,8 @@ def take_picture():
         capNum1 = int(0)
         if (similarity_score < 1 ):
             shutil.move(i, "C:/Users/전종현/Desktop/pp")
+            
+    shutil.move('picture000.png', "C:/Users/전종현/Desktop/pp")
 
 def compare_images(i, image2_path):
     
@@ -121,8 +127,13 @@ open_button.place(x=300, y=300)
 pbutton2 = Button(root, text = ".", command = take_picture2)
 pbutton2.place(x=50, y=50)
 
+label1 = Label(root, text = "p, 사진찍기")
+label1.place(x=150, y=75) 
 
-    
+label2 = Label(root, text = "s, 사진을 찍어주는 창 종료")
+label2.place(x=150, y=100) 
+
+
 root.mainloop()
 
 
