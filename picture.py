@@ -55,7 +55,7 @@ def take_picture():
         similarity_score = compare_images(i, image2_path)
         print(f"이미지의 유사도: {similarity_score}")
         capNum1 = int(0)
-        if (similarity_score < 1 ):
+        if (similarity_score > 0.5 ):
             shutil.move(i, "C:/Users/전종현/Desktop/pp")
             
     shutil.move('picture000.png', "C:/Users/전종현/Desktop/pp")
